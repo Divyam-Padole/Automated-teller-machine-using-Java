@@ -40,9 +40,12 @@ public class front extends JPanel implements ItemListener, ActionListener {
     private final JButton continue_session;
     private final JPasswordField pinTextBox;
 
+    private final JButton balance;
+
     private final JTextArea display;
 
     private final JRadioButton insert;
+    private final JTextField diswith;
     private final JButton new_pin;
 
     private  String user_id,user_pin;
@@ -168,11 +171,12 @@ public class front extends JPanel implements ItemListener, ActionListener {
         deposit = new JButton();
         new_pin = new JButton();
         withdraw = new JButton();
-        JButton balance = new JButton();
+        balance = new JButton();
         mini_stat = new JButton();
         account_detail = new JButton();
         display = new JTextArea();
         pinTextBox=new JPasswordField();
+        diswith = new JTextField();
         insert = new JRadioButton("CARD STATUS");
 
         //adjust size and set layout
@@ -188,6 +192,7 @@ public class front extends JPanel implements ItemListener, ActionListener {
         add (account_detail);
         add(display);
         add(pinTextBox);
+        add(diswith);
         add(insert);
 
         //set component bounds (only needed by Absolute Positioning)
@@ -243,6 +248,14 @@ public class front extends JPanel implements ItemListener, ActionListener {
         pinTextBox.setBackground(new Color(0xFFFFFF));
         pinTextBox.setHorizontalAlignment(JTextField.CENTER);
 
+        diswith.setBounds(300, 510, 410, 30);
+        diswith.setFont(font);
+        diswith.setBorder(null);
+        diswith.setVisible(false);
+        diswith.setEditable(false);
+        diswith.setBackground(new Color(0xFFFFFF));
+        diswith.setHorizontalAlignment(JTextField.CENTER);
+
 
         insert.setLocation(120, 920);
         insert.setSize(200,20);
@@ -271,6 +284,7 @@ public class front extends JPanel implements ItemListener, ActionListener {
         deposit.addActionListener(this);
         withdraw.addActionListener(this);
         new_pin.addActionListener(this);
+        balance.addActionListener(this);
         continue_session.addActionListener(this);
 
         //---------------------------------------------------
@@ -314,8 +328,10 @@ public class front extends JPanel implements ItemListener, ActionListener {
         }
         else{
             pinTextBox.setVisible(false);
+            diswith.setVisible(false);
             display.setText(start);
             pinTextBox.setText(null);
+            diswith.setText(null);
             word=0;
             pin_count=0;
             user_pin=null;
@@ -333,51 +349,61 @@ public class front extends JPanel implements ItemListener, ActionListener {
                     if (e.getSource() == numpad1) {
 
                         pinTextBox.setText(pinTextBox.getText() + "1");
+                        diswith.setText(diswith.getText()+"1");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad2) {
                         pinTextBox.setText(pinTextBox.getText() + "2");
+                        diswith.setText(diswith.getText()+"2");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad3) {
                         pinTextBox.setText(pinTextBox.getText() + "3");
+                        diswith.setText(diswith.getText()+"3");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad4) {
                         pinTextBox.setText(pinTextBox.getText() + "4");
+                        diswith.setText(diswith.getText()+"4");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad5) {
                         pinTextBox.setText(pinTextBox.getText() + "5");
+                        diswith.setText(diswith.getText()+"5");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad6) {
                         pinTextBox.setText(pinTextBox.getText() + "6");
+                        diswith.setText(diswith.getText()+"6");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad7) {
                         pinTextBox.setText(pinTextBox.getText() + "7");
+                        diswith.setText(diswith.getText()+"7");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad8) {
                         pinTextBox.setText(pinTextBox.getText() + "8");
+                        diswith.setText(diswith.getText()+"8");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad9) {
                         pinTextBox.setText(pinTextBox.getText() + "9");
+                        diswith.setText(diswith.getText()+"9");
                         word += 1;
                         pin_count += 1;
                     }
                     if (e.getSource() == numpad0) {
                         pinTextBox.setText(pinTextBox.getText() + "0");
+                        diswith.setText(diswith.getText()+"0");
                         word += 1;
                         pin_count += 1;
                     }
@@ -386,11 +412,25 @@ public class front extends JPanel implements ItemListener, ActionListener {
                 }
             }
             if (e.getSource() == clear) {
-                String text = pinTextBox.getText();
+                String text ;
+                if(pinTextBox.isVisible())
+                {
+                    text=pinTextBox.getText();
+                }
+                else {
+                    text=diswith.getText();
+                }
                 word -= 1;
                 pin_count -= 1;
                 if (text.length() > 0) {
-                    pinTextBox.setText(text.substring(0, text.length() - 1));
+                    if(pinTextBox.isVisible())
+                    {
+                        pinTextBox.setText(text.substring(0, text.length() - 1));
+                    }
+                    else {
+                        diswith.setText(text.substring(0, text.length() - 1));
+                    }
+
                 } else {
                     word = 0;
                     pin_count = 0;
@@ -402,6 +442,9 @@ public class front extends JPanel implements ItemListener, ActionListener {
                 display.setText(start);
                 insert.setSelected(false);
                 pinTextBox.setText(null);
+                pinTextBox.setVisible(false);
+                diswith.setText(null);
+                diswith.setVisible(false);
                 word = 0;
                 pin_count = 0;
                 user_id = null;
@@ -413,24 +456,25 @@ public class front extends JPanel implements ItemListener, ActionListener {
 //            ------------------------------------------
             if (e.getSource() == enter) {
 
-                if (pinTextBox.isVisible()) {
+                if (pinTextBox.isVisible() || diswith.isVisible()) {
 
                     if (count == 3) {
                         String time = DateFormat.getDateTimeInstance().format(new Date());
                         deposit de = new deposit();
-                        if (pinTextBox.getText().equals("")) {
+                        if (diswith.getText().equals("")) {
                             display.setText(null_enter);
                         }
                         else {
-                        display.setText(bank+de.deposits(user_id, Integer.parseInt(pinTextBox.getText()), time)+policy);}
+                        display.setText(bank+de.deposits(user_id, Integer.parseInt(diswith.getText()), time)+policy);}
                         conti=1;
                     } else if (count == 4) {
                         String time = DateFormat.getDateTimeInstance().format(new Date());
                         withdraw wi = new withdraw();
-                        if (pinTextBox.getText().equals("")) {
+                        if (diswith.getText().equals("")) {
                             display.setText(null_enter);
                         }else{
-                        display.setText(bank+wi.wintdrawnmethod(user_id, Integer.parseInt(pinTextBox.getText()), time)+policy);}
+                        display.setText(bank+wi.wintdrawnmethod(user_id, Integer.parseInt(diswith.getText()), time)+policy);
+                        }
                         conti=1;
                     }
                     else if(count==5)
@@ -534,12 +578,18 @@ public class front extends JPanel implements ItemListener, ActionListener {
                 limit_flag=0;
                 conti=1;
             }
+            if(e.getSource()==balance && limit_flag==2){
+                balance b = new balance();
+                display.setText(bank+b.balance_amount(user_id)+policy);
+                limit_flag=0;
+                conti=1;
+            }
             if(e.getSource()==deposit && limit_flag==2)
             {
 
                 display.setText(dis_amount+policy);
-                pinTextBox.setText(null);
-                pinTextBox.setVisible(true);
+                diswith.setText(null);
+                diswith.setVisible(true);
                 word=5;
                 limit_flag=0;
                 count=3;
@@ -548,8 +598,8 @@ public class front extends JPanel implements ItemListener, ActionListener {
             if(e.getSource()==withdraw && limit_flag==2)
             {
                 display.setText(dis_amount+policy);
-                pinTextBox.setText(null);
-                pinTextBox.setVisible(true);
+                diswith.setText(null);
+                diswith.setVisible(true);
                 word=5;
                 limit_flag=0;
                 count=4;
@@ -567,10 +617,12 @@ public class front extends JPanel implements ItemListener, ActionListener {
             if(e.getSource()==continue_session && conti==1){
                 conti=0;
                 pinTextBox.setVisible(false);
+                diswith.setVisible(false);
                 display.setText(option);
                 limit_flag=2;
                 count=0;
                 pinTextBox.setText(null);
+                diswith.setText(null);
                 word=0;
                 pin_count=0;
             }

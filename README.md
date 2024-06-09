@@ -41,17 +41,21 @@ This project is a simulation of an Automated Teller Machine (ATM) system impleme
    - **Exit:** Exit the program.
 4. Follow the on-screen instructions to complete the selected operation.
 5. After completing the operation, you can choose to perform another operation or exit the program.
-6. 
+
+ ### View of the ATM
 ![1](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/2ef5f8c7-3a66-40b5-a9c9-ed2680e63e3c)
+### Card is accepted and locked
 ![2](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/eff57817-ff24-420a-aae4-3fb229c9d0e9)
-![3](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/d316c150-8600-430a-a96c-4c5d208282f9)
+### Error if pin is wrong
 ![7](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/16b05b43-e5de-423f-8165-fc74961ca3bd)
+### Card is accepted
+![3](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/d316c150-8600-430a-a96c-4c5d208282f9)
+### Display all options
 ![6](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/2ec8e03d-2fa6-4721-90a9-2991d75590f3)
+### Withdraw option
 ![5](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/3d3a7301-af8a-4545-a34a-da0218dab017)
-![4](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/01bcca58-7d75-4988-aafa-423f599f8f9a)
 
-
-![pin3](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/531d0500-3c6b-4c49-8965-da7589cebaff)
-![pin2](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/0c7dd424-529b-4ac7-9572-1d12c4de57a5)
+### Pinchange options
 ![pin1](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/6328d993-5482-438c-9b1b-6e514181a51c)
-
+![pin2](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/0c7dd424-529b-4ac7-9572-1d12c4de57a5)
+![pin3](https://github.com/Divyam-Padole/Automated-teller-machine-using-Java/assets/104207473/531d0500-3c6b-4c49-8965-da7589cebaff)
